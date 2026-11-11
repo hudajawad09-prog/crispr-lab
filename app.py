@@ -95,7 +95,7 @@ st.markdown("""
         box-shadow: 0 4px 15px rgba(168, 85, 247, 0.2);
     }
 
-    /* تصميم فاخر لتويتر/فوتر الحقوق والإشراف */
+    /* تصميم فاخر للفوتر واسمك بخط أصغر في الأسفل */
     .footer-box {
         position: relative;
         z-index: 10;
@@ -198,12 +198,13 @@ if st.session_state.history:
         st.markdown(f"<div class='chat-box-user'>👤 سؤالك: {chat['user']}</div>", unsafe_allow_html=True)
         st.markdown(f"<div class='chat-box-ai'>🤖 إجابة المختبر: {chat['ai']}</div>", unsafe_allow_html=True)
 
-# 5. قسم حقوق الملكية والاعتمادات الرسمية في أسفل الموقع
+# 5. قسم الأعضاء والاعتمادات الرسمية أولاً ثم اسمك أسفلهم بحجم أصغر
 st.markdown("""
 <div class="footer-box">
-    <p style="color: #38bdf8; font-weight: 800; font-size: 1.1rem; margin-bottom: 8px;">✨ Made by: Huda Hasan</p>
-    <p style="color: #F8FAFC; font-size: 0.95rem; margin: 4px 0;">إشراف المعلمة: أ. وديعة خليل</p>
-    <p style="color: #F8FAFC; font-size: 0.95rem; margin: 4px 0;">المعلمة الأولى: هدى العرادي</p>
-    <p style="color: #F8FAFC; font-size: 0.95rem; margin: 4px 0;">مديرة المدرسة: هاشمية السيد شرف</p>
+    <p style="color: #F8FAFC; font-size: 1rem; margin: 4px 0;">إشراف المعلمة: أ. وديعة خليل</p>
+    <p style="color: #F8FAFC; font-size: 1rem; margin: 4px 0;">المعلمة الأولى: هدى العرادي</p>
+    <p style="color: #F8FAFC; font-size: 1rem; margin: 4px 0;">مديرة المدرسة: هاشمية السيد شرف</p>
+    <hr style="border-color: rgba(168, 85, 247, 0.2); margin: 12px 0;">
+    <p style="color: #38bdf8; font-size: 0.85rem; font-weight: 600; margin: 0;">By: Huda Hasan</p>
 </div>
 """, unsafe_allow_html=True)
