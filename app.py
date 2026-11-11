@@ -3,7 +3,7 @@ import streamlit as st
 # 1. إعدادات الصفحة
 st.set_page_config(page_title="CRISPR-Cas9 Elite Lab", page_icon="🧬", layout="wide")
 
-# 2. كود التصميم، الخلفية المتحركة، وتثبيت التنسيقات
+# 2. كود التصميم، الخلفية المتحركة، وتثبيت ألوان الكتابة في الشات
 st.markdown("""
 <style>
     @import url('https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;800&display=swap');
@@ -72,6 +72,18 @@ st.markdown("""
         font-family: 'Cairo', sans-serif !important;
         color: #F8FAFC !important;
         text-align: right;
+    }
+
+    /* إصلاح لون النص المكتوب في خانة الشات ليكون أبيض واضح تماماً */
+    div[data-baseweb="base-input"] input, textarea, input[type="text"] {
+        color: #FFFFFF !important;
+        -webkit-text-fill-color: #FFFFFF !important;
+    }
+    
+    /* ضبط اتجاه ووصف مكان إدخال النصوص في الشات */
+    div[data-testid="stChatInput"] textarea {
+        text-align: right !important;
+        direction: rtl !important;
     }
 </style>
 
