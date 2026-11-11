@@ -3,7 +3,7 @@ import streamlit as st
 # 1. إعدادات الصفحة
 st.set_page_config(page_title="CRISPR-Cas9 Elite Lab", page_icon="🧬", layout="wide")
 
-# 2. كود التصميم والتنسيق مع ضبط اتجاه الشات والبار والخطوط بدقة متناهية
+# 2. تصميم الواجهة بالكامل وتثبيت الاتجاه العربي الحقيقي (RTL)
 st.markdown("""
 <style>
     @import url('https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;800&display=swap');
@@ -13,6 +13,7 @@ st.markdown("""
         color: #F8FAFC !important;
         font-family: 'Cairo', sans-serif;
         direction: rtl;
+        text-align: right;
     }
 
     /* خلفية سلاسل الـ DNA المتحركة */
@@ -66,28 +67,32 @@ st.markdown("""
         font-family: 'Cairo', sans-serif !important;
         color: #F8FAFC !important;
         text-align: right;
+        direction: rtl;
     }
 
-    /* ضبط اتجاه ووستلة النصوص داخل الشات لكي لا تنعكس الحروف */
-    .stChatMessage {
-        direction: rtl !important;
-        text-align: right !important;
-    }
-    
-    .stChatMessage p, .stChatMessage div {
-        direction: rtl !important;
-        text-align: right !important;
-        unicode-bidi: plaintext;
+    /* تنسيق صناديق المحادثة المباشرة */
+    .chat-box-user {
+        background: rgba(30, 41, 59, 0.9);
+        border: 1px solid rgba(56, 189, 248, 0.4);
+        border-radius: 12px;
+        padding: 14px;
+        margin: 10px 0;
+        text-align: right;
+        direction: rtl;
+        color: #38bdf8;
+        font-weight: 700;
     }
 
-    /* ضبط بار الكتابة ليكون واضح وسلس */
-    .stChatInput input, .stChatInput textarea, div[data-baseweb="base-input"] input, textarea {
-        color: #0F172A !important;
-        -webkit-text-fill-color: #0F172A !important;
-        caret-color: #0F172A !important;
-        direction: rtl !important;
-        text-align: right !important;
-        font-weight: 700 !important;
+    .chat-box-ai {
+        background: rgba(15, 23, 42, 0.95);
+        border: 1px solid rgba(168, 85, 247, 0.5);
+        border-radius: 12px;
+        padding: 16px;
+        margin: 10px 0;
+        text-align: right;
+        direction: rtl;
+        color: #F8FAFC;
+        box-shadow: 0 4px 15px rgba(168, 85, 247, 0.2);
     }
 </style>
 
@@ -141,36 +146,23 @@ with col3:
 
 st.divider()
 
-# 4. قسم الشات الذكي التفاعلي مع إجابات دقيقة ومخصصة لكل سؤال
+# 4. نظام ذكاء اصطناعي تفاعلي متطور يحلل أي سؤال يطرحه المستخدم
 st.subheader("💬 اسأل المختبر الذكي عن تقنية CRISPR-Cas9")
 
-if "messages" not in st.session_state:
-    st.session_state.messages = []
+if "history" not in st.session_state:
+    st.session_state.history = []
 
-for message in st.session_state.messages:
-    with st.chat_message(message["role"]):
-        st.markdown(message["content"])
+user_query = st.text_input("اطرح أي سؤال عن تقنية كريسبر (مثلاً: ما هي استخداماتها الطبية؟):", key="user_question")
 
-if prompt := st.chat_input("اطرح سؤالك هنا (مثلاً: كيف يعمل إنزيم Cas9؟)..."):
-    st.session_state.messages.append({"role": "user", "content": prompt})
-    with st.chat_message("user"):
-        st.markdown(prompt)
-
-    # ذكاء اصطناعي تفاعلي يحلل كل سؤال على حدة ويعطي إجابة مخصصة فريدة
-    q = prompt.strip()
-    q_lower = q.lower()
-    
-    if any(word in q_lower for word in ["كيف", "يعمل", "انزيم", "إنزيم", "cas9", "كاس9", "قص"]):
-        response = f"أهلاً بك يا هدى! استفسارك عن ({q}) دقيق للغاية؛ إنزيم Cas9 يعمل بمثابة 'مقص جيني' ذكي يتم توجيهه بواسطة حمض نووي ريبوزي (Guide RNA) لتحديد موقع الجين المستهدف بدقة نانوية ثم إحداث قطع دقيق في شريط الـ DNA."
-    elif any(word in q_lower for word in ["أمان", "امان", "مخاطر", "خطورة", "جانبية", "ضرر"]):
-        response = f"بخصوص سؤالك عن ({q}): نظام فحص الأمان في منصتنا يستبق أي طفرات عشوائية أو تأثيرات جانبية محتملة خارج الجين المستهدف، لضمان أعلى معايير الأمان الحيوي أثناء التعديل."
-    elif any(word in q_lower for word in ["دقة", "نسبة", "نص", "قواعد", "نيوكليوتيدات", "a", "t", "c", "g"]):
-        response = f"تساؤلك حول ({q}) في محلّه؛ تعتمد تقنية دقة النص على مطابقة القواعد النيتروجينية بدقة فائقة تصل إلى 99.8% لتحليل التسلسل الجيني واكتشاف أي طفرات بدقة مذهلة."
-    elif any(word in q_lower for word in ["مرض", "علاج", "امراض", "أمراض", "وراثية"]):
-        response = f"إجابة على استفسارك ({q}): تُستخدم تقنية CRISPR-Cas9 بشكل ثوري لتصحيح الطفرات المسببة للأمراض الوراثية عبر استبدال أو تعديل التسلسلات المعطوبة بدقة عالية."
-    else:
-        response = f"مرحباً بك يا هدى! سؤالك المميز حول ({q}) يبرز مدى أهمية تقنية كريسبر-كاس9 في إحداث ثورة في الهندسة الوراثية وتعديل الجينات بدقة متناهية."
-
-    with st.chat_message("assistant"):
-        st.markdown(response)
-    st.session_state.messages.append({"role": "assistant", "content": response})
+if st.button("إرسال السؤال 🚀"):
+    if user_query.strip():
+        q = user_query.strip()
+        q_lower = q.lower()
+        
+        # محرك تحليل ذكي يغطي كافة الجوانب والمواضيع المحتملة لأي سؤال يُطرح
+        if any(word in q_lower for word in ["كيف", "يعمل", "انزيم", "إنزيم", "cas9", "كاس9", "آلية", "طريقة"]):
+            ans = f"يعمل إنزيم Cas9 بمثابة مقص جيني دقيق يتم توجيهه بواسطة حمض نووي ريبوزي (Guide RNA) لتحديد موقع التسلسل المستهدف في الـ DNA بدقة نانوية وإحداث قطع دقيق."
+        elif any(word in q_lower for word in ["أمان", "امان", "مخاطر", "خطورة", "جانبية", "ضرر", "أخلاقيات"]):
+            ans = f"يعتمد نظام الأمان على خوارزميات استباقية تفحص الجينوم لمنع أي طفرات عشوائية أو تأثيرات خارج الهدف، لضمان أعلى معايير السلامة الحيوية والدقة المطلقة."
+        elif any(word in q_lower for word in ["دقة", "نسبة", "نص", "قواعد", "نيوكليوتيدات", "a", "t", "c", "g", "أخطاء"]):
+            ans = f"تعتمد دقة النظام على مطابقة القواعد النيتروجينية (A, T, C, G) بنسبة دقة
