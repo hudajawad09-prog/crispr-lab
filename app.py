@@ -3,7 +3,7 @@ import streamlit as st
 # 1. إعدادات الصفحة
 st.set_page_config(page_title="CRISPR-Cas9 Elite Lab", page_icon="🧬", layout="wide")
 
-# 2. كود التصميم، الخلفية المتحركة، وتثبيت ألوان الكتابة في الشات
+# 2. كود التصميم والتنسيق مع ضبط بار الكتابة بالكامل
 st.markdown("""
 <style>
     @import url('https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;800&display=swap');
@@ -15,7 +15,7 @@ st.markdown("""
         direction: rtl;
     }
 
-    /* خلفية سلاسل الـ DNA المتحركة في الفضاء الخلفي */
+    /* خلفية سلاسل الـ DNA المتحركة */
     .dna-space {
         position: fixed;
         width: 100%;
@@ -45,14 +45,8 @@ st.markdown("""
     .dna-strand:nth-child(6) { left: 90%; animation-duration: 15s; animation-delay: 5s; }
 
     @keyframes floatDNA {
-        0% {
-            transform: translateY(0) rotate(0deg);
-            opacity: 0.9;
-        }
-        100% {
-            transform: translateY(-900px) rotate(360deg);
-            opacity: 0;
-        }
+        0% { transform: translateY(0) rotate(0deg); opacity: 0.9; }
+        100% { transform: translateY(-900px) rotate(360deg); opacity: 0; }
     }
 
     /* تصميم الكروت الفخمة والثابتة */
@@ -74,16 +68,14 @@ st.markdown("""
         text-align: right;
     }
 
-    /* إصلاح لون النص المكتوب في خانة الشات ليكون أبيض واضح تماماً */
-    div[data-baseweb="base-input"] input, textarea, input[type="text"] {
-        color: #FFFFFF !important;
-        -webkit-text-fill-color: #FFFFFF !important;
-    }
-    
-    /* ضبط اتجاه ووصف مكان إدخال النصوص في الشات */
-    div[data-testid="stChatInput"] textarea {
-        text-align: right !important;
+    /* جعل الحروف المكتوبة داخل بار الكتابة باللون الأسود الواضح والبارز على الخلفية البيضاء */
+    .stChatInput input, .stChatInput textarea, div[data-baseweb="base-input"] input, textarea {
+        color: #0F172A !important;
+        -webkit-text-fill-color: #0F172A !important;
+        caret-color: #0F172A !important;
         direction: rtl !important;
+        text-align: right !important;
+        font-weight: 700 !important;
     }
 </style>
 
@@ -137,7 +129,7 @@ with col3:
 
 st.divider()
 
-# 4. قسم الشات الذكي التفاعلي المتطور
+# 4. قسم الشات الذكي التفاعلي المتطور الذي يجيب فوراً على أي سؤال
 st.subheader("💬 اسأل المختبر الذكي عن تقنية CRISPR-Cas9")
 
 if "messages" not in st.session_state:
@@ -152,7 +144,7 @@ if prompt := st.chat_input("اطرح سؤالك هنا (مثلاً: كيف يع�
     with st.chat_message("user"):
         st.markdown(prompt)
 
-    # ذكاء اصطناعي تفاعلي يحلل السؤال ويرد بدقة علمية مخصصة
+    # ذكاء اصطناعي تفاعلي يحلل السؤال ويرد فوراً وبدقة علمية مخصصة
     user_q = prompt.lower()
     if "cas9" in user_q or "إنزيم" in user_q or "قص" in user_q:
         response = f"أهلاً بك يا هدى! بناءً على سؤالك حول **({prompt})**: يعمل إنزيم Cas9 كـ 'مقص جيني' موجه بواسطة جزيء RNA لإيجاد تسلسل الـ DNA المستهدف بدقة نانوية ثم إحداث قص مزدوج بدقة مذهلة."
