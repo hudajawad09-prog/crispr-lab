@@ -3,7 +3,7 @@ import streamlit as st
 # 1. إعدادات الصفحة
 st.set_page_config(page_title="CRISPR-Cas9 Elite Lab", page_icon="🧬", layout="wide")
 
-# 2. كود التصميم، الخلفية المتحركة، وضبط اتجاه الحروف والنصوص بدقة تامة
+# 2. كود التصميم، الخلفية المتحركة، وترتيب الواجهة
 st.markdown("""
 <style>
     @import url('https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;800&display=swap');
@@ -55,7 +55,7 @@ st.markdown("""
         }
     }
 
-    /* تصميم الكروت الفخمة وتثبيتها فوق الخلفية المتحركة */
+    /* تصميم الكروت الفخمة والثابتة */
     .lab-card {
         position: relative;
         z-index: 10;
@@ -65,38 +65,13 @@ st.markdown("""
         padding: 24px;
         box-shadow: 0 10px 30px -10px rgba(56, 189, 248, 0.4);
         margin-bottom: 15px;
+        text-align: right;
     }
     
     h1, h2, h3, h4, span, p, label, div {
         font-family: 'Cairo', sans-serif !important;
         color: #F8FAFC !important;
-    }
-
-    /* إصلاح اتجاه النصوص وأزرار التفاصيل تماماً لتظهر الحروف عربية صحيحة 100% */
-    div[data-testid="stExpander"] {
-        direction: rtl !important;
-        text-align: right !important;
-    }
-    
-    div[data-testid="stExpander"] details summary {
-        direction: rtl !important;
-        text-align: right !important;
-    }
-
-    div[data-testid="stExpander"] details summary p, 
-    div[data-testid="stExpander"] details summary span {
-        direction: rtl !important;
-        unicode-bidi: plaintext !important;
-        text-align: right !important;
-        color: #38bdf8 !important;
-        font-weight: 700;
-    }
-
-    div[data-testid="stExpander"] div[data-testid="stMarkdownContainer"] p {
-        direction: rtl !important;
-        unicode-bidi: plaintext !important;
-        text-align: right !important;
-        color: #E2E8F0 !important;
+        text-align: right;
     }
 </style>
 
@@ -113,7 +88,7 @@ st.markdown("""
 
 # 3. محتوى الصفحة الرئيسي والمنصة الأساسية
 st.title("🧬 CRISPR-Cas9 Elite Lab")
-st.markdown("<p style='font-size: 1.2rem;'>منصة النانو الذكية لتحليل واستكشاف تقنية كريسبر لتعديل الجينات بالذكاء الاصطناعي</p>", unsafe_allow_html=True)
+st.markdown("<p style='font-size: 1.2rem; text-align: right;'>منصة النانو الذكية لتحليل واستكشاف تقنية كريسبر لتعديل الجينات بالذكاء الاصطناعي</p>", unsafe_allow_html=True)
 st.divider()
 
 col1, col2, col3 = st.columns(3)
@@ -123,33 +98,30 @@ with col1:
         <div class="lab-card">
             <h3>🔬 دقة النص</h3>
             <p>تحليل فائق الدقة لتسلسلات النيوكليوتيدات واكتشاف الطفرات المستهدفة.</p>
+            <hr style="border-color: rgba(56, 189, 248, 0.2);">
+            <p style="font-size: 0.9rem; color: #38bdf8;">• فحص مطابقة القواعد النيتروجينية (A, T, C, G).<br>• خوارزمية ذكية لاكتشاف الأخطاء بنسبة 99.8%.</p>
         </div>
     """, unsafe_allow_html=True)
-    with st.expander("عرض تفاصيل دقة النص"):
-        st.write("• فحص مطابقة القواعد النيتروجينية (A, T, C, G).")
-        st.write("• خوارزمية ذكية لاكتشاف الأخطاء بنسبة دقة تصل إلى 99.8%.")
 
 with col2:
     st.markdown("""
         <div class="lab-card">
             <h3>⚡ محاكاة فورية</h3>
             <p>محاكاة بصرية حية لعملية القص المزدوج والربط الجيني لحظياً.</p>
+            <hr style="border-color: rgba(56, 189, 248, 0.2);">
+            <p style="font-size: 0.9rem; color: #38bdf8;">• محاكاة عمل إنزيم Cas9 وهو يقطع شريط الـ DNA.<br>• تتبع حركة الإنزيم خطوة بخطوة.</p>
         </div>
     """, unsafe_allow_html=True)
-    with st.expander("عرض تفاصيل المحاكاة"):
-        st.write("• محاكاة عمل إنزيم Cas9 وهو يقطع شريط الـ DNA بدقة.")
-        st.write("• تتبع حركة الإنزيم خطوة بخطوة على الشاشة.")
 
 with col3:
     st.markdown("""
         <div class="lab-card">
             <h3>🛡️ فحص الأمان</h3>
             <p>فحص استباقي لمنع أي تأثيرات جانبية خارج المستهدف وبأمان تام.</p>
+            <hr style="border-color: rgba(56, 189, 248, 0.2);">
+            <p style="font-size: 0.9rem; color: #38bdf8;">• تقييم المخاطر البيولوجية المحتملة.<br>• منع التعديلات العشوائية خارج الجين المستهدف.</p>
         </div>
     """, unsafe_allow_html=True)
-    with st.expander("عرض تفاصيل الأمان"):
-        st.write("• تقييم المخاطر البيولوجية المحتملة.")
-        st.write("• منع التعديلات العشوائية خارج الجين المستهدف.")
 
 st.divider()
 
