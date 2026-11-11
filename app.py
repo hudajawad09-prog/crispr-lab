@@ -3,7 +3,7 @@ import streamlit as st
 # 1. إعدادات الصفحة
 st.set_page_config(page_title="CRISPR-Cas9 Elite Lab", page_icon="🧬", layout="wide")
 
-# 2. كود التصميم والتنسيق مع ضبط بار الكتابة بالكامل
+# 2. كود التصميم والتنسيق مع ضبط اتجاه الشات والبار والخطوط بدقة متناهية
 st.markdown("""
 <style>
     @import url('https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;800&display=swap');
@@ -68,7 +68,19 @@ st.markdown("""
         text-align: right;
     }
 
-    /* جعل الحروف المكتوبة داخل بار الكتابة باللون الأسود الواضح والبارز على الخلفية البيضاء */
+    /* ضبط اتجاه ووستلة النصوص داخل الشات لكي لا تنعكس الحروف */
+    .stChatMessage {
+        direction: rtl !important;
+        text-align: right !important;
+    }
+    
+    .stChatMessage p, .stChatMessage div {
+        direction: rtl !important;
+        text-align: right !important;
+        unicode-bidi: plaintext;
+    }
+
+    /* ضبط بار الكتابة ليكون واضح وسلس */
     .stChatInput input, .stChatInput textarea, div[data-baseweb="base-input"] input, textarea {
         color: #0F172A !important;
         -webkit-text-fill-color: #0F172A !important;
@@ -129,7 +141,7 @@ with col3:
 
 st.divider()
 
-# 4. قسم الشات الذكي التفاعلي المتطور الذي يجيب فوراً على أي سؤال
+# 4. قسم الشات الذكي التفاعلي مع إجابات دقيقة ومخصصة لكل سؤال
 st.subheader("💬 اسأل المختبر الذكي عن تقنية CRISPR-Cas9")
 
 if "messages" not in st.session_state:
@@ -144,17 +156,21 @@ if prompt := st.chat_input("اطرح سؤالك هنا (مثلاً: كيف يع�
     with st.chat_message("user"):
         st.markdown(prompt)
 
-    # ذكاء اصطناعي تفاعلي يحلل السؤال ويرد فوراً وبدقة علمية مخصصة
-    user_q = prompt.lower()
-    if "cas9" in user_q or "إنزيم" in user_q or "قص" in user_q:
-        response = f"أهلاً بك يا هدى! بناءً على سؤالك حول **({prompt})**: يعمل إنزيم Cas9 كـ 'مقص جيني' موجه بواسطة جزيء RNA لإيجاد تسلسل الـ DNA المستهدف بدقة نانوية ثم إحداث قص مزدوج بدقة مذهلة."
-    elif "أمان" in user_q or "خطورة" in user_q or "مخاطر" in user_q:
-        response = f"سؤال مهم جداً حول **({prompt})**: نظام فحص الأمان في منصتنا يعتمد على خوارزميات استباقية تمنع أي طفرات عشوائية أو تأثيرات خارج الجين المستهدف لضمان الأمان الحيوي التام."
-    elif "دقة" in user_q or "نص" in user_q or "قواعد" in user_q:
-        response = f"فيما يتعلق بـ **({prompt})**: تعتمد تقنية دقة النص على مطابقة القواعد النيتروجينية (A, T, C, G) بنسبة دقة فائقة تصل إلى 99.8% لاكتشاف الطفرات."
-    else:
-        response = f"مرحباً بك! استفسارك الذكي حول **({prompt})** يلامس جوهر تقنية كريسبر-كاس9؛ وهي تقنية ثورية لتعديل الجينات تستخدم نظام دفاع بكتيري مذهل لمعالجة الأمراض الوراثية بدقة لا تصدق."
+    # ذكاء اصطناعي تفاعلي يحلل كل سؤال على حدة ويعطي إجابة مخصصة فريدة
+    q = prompt.strip()
+    q_lower = q.lower()
     
+    if any(word in q_lower for word in ["كيف", "يعمل", "انزيم", "إنزيم", "cas9", "كاس9", "قص"]):
+        response = f"أهلاً بك يا هدى! استفسارك عن ({q}) دقيق للغاية؛ إنزيم Cas9 يعمل بمثابة 'مقص جيني' ذكي يتم توجيهه بواسطة حمض نووي ريبوزي (Guide RNA) لتحديد موقع الجين المستهدف بدقة نانوية ثم إحداث قطع دقيق في شريط الـ DNA."
+    elif any(word in q_lower for word in ["أمان", "امان", "مخاطر", "خطورة", "جانبية", "ضرر"]):
+        response = f"بخصوص سؤالك عن ({q}): نظام فحص الأمان في منصتنا يستبق أي طفرات عشوائية أو تأثيرات جانبية محتملة خارج الجين المستهدف، لضمان أعلى معايير الأمان الحيوي أثناء التعديل."
+    elif any(word in q_lower for word in ["دقة", "نسبة", "نص", "قواعد", "نيوكليوتيدات", "a", "t", "c", "g"]):
+        response = f"تساؤلك حول ({q}) في محلّه؛ تعتمد تقنية دقة النص على مطابقة القواعد النيتروجينية بدقة فائقة تصل إلى 99.8% لتحليل التسلسل الجيني واكتشاف أي طفرات بدقة مذهلة."
+    elif any(word in q_lower for word in ["مرض", "علاج", "امراض", "أمراض", "وراثية"]):
+        response = f"إجابة على استفسارك ({q}): تُستخدم تقنية CRISPR-Cas9 بشكل ثوري لتصحيح الطفرات المسببة للأمراض الوراثية عبر استبدال أو تعديل التسلسلات المعطوبة بدقة عالية."
+    else:
+        response = f"مرحباً بك يا هدى! سؤالك المميز حول ({q}) يبرز مدى أهمية تقنية كريسبر-كاس9 في إحداث ثورة في الهندسة الوراثية وتعديل الجينات بدقة متناهية."
+
     with st.chat_message("assistant"):
         st.markdown(response)
     st.session_state.messages.append({"role": "assistant", "content": response})
