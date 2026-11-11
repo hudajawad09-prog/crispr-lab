@@ -3,7 +3,7 @@ import streamlit as st
 # 1. إعدادات الصفحة
 st.set_page_config(page_title="CRISPR-Cas9 Elite Lab", page_icon="🧬", layout="wide")
 
-# 2. كود التصميم، الخلفية المتحركة، وترتيب الواجهة
+# 2. كود التصميم، الخلفية المتحركة، وتثبيت التنسيقات
 st.markdown("""
 <style>
     @import url('https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;800&display=swap');
@@ -55,7 +55,7 @@ st.markdown("""
         }
     }
 
-    /* تصميم الكروت الفخمة والثابتة */
+    /* تصميم الكروت الفخمة والثابتة فوق الخلفية المتحركة */
     .lab-card {
         position: relative;
         z-index: 10;
@@ -99,7 +99,7 @@ with col1:
             <h3>🔬 دقة النص</h3>
             <p>تحليل فائق الدقة لتسلسلات النيوكليوتيدات واكتشاف الطفرات المستهدفة.</p>
             <hr style="border-color: rgba(56, 189, 248, 0.2);">
-            <p style="font-size: 0.9rem; color: #38bdf8;">• فحص مطابقة القواعد النيتروجينية (A, T, C, G).<br>• خوارزمية ذكية لاكتشاف الأخطاء بنسبة 99.8%.</p>
+            <p style="font-size: 0.85rem; color: #38bdf8;">👇 <b>اقرأ التفاصيل أدناه:</b><br>• فحص مطابقة القواعد النيتروجينية (A, T, C, G).<br>• خوارزمية ذكية لاكتشاف الأخطاء بنسبة 99.8%.</p>
         </div>
     """, unsafe_allow_html=True)
 
@@ -109,7 +109,7 @@ with col2:
             <h3>⚡ محاكاة فورية</h3>
             <p>محاكاة بصرية حية لعملية القص المزدوج والربط الجيني لحظياً.</p>
             <hr style="border-color: rgba(56, 189, 248, 0.2);">
-            <p style="font-size: 0.9rem; color: #38bdf8;">• محاكاة عمل إنزيم Cas9 وهو يقطع شريط الـ DNA.<br>• تتبع حركة الإنزيم خطوة بخطوة.</p>
+            <p style="font-size: 0.85rem; color: #38bdf8;">👇 <b>اقرأ التفاصيل أدناه:</b><br>• محاكاة عمل إنزيم Cas9 وهو يقطع شريط الـ DNA.<br>• تتبع حركة الإنزيم خطوة بخطوة.</p>
         </div>
     """, unsafe_allow_html=True)
 
@@ -119,7 +119,7 @@ with col3:
             <h3>🛡️ فحص الأمان</h3>
             <p>فحص استباقي لمنع أي تأثيرات جانبية خارج المستهدف وبأمان تام.</p>
             <hr style="border-color: rgba(56, 189, 248, 0.2);">
-            <p style="font-size: 0.9rem; color: #38bdf8;">• تقييم المخاطر البيولوجية المحتملة.<br>• منع التعديلات العشوائية خارج الجين المستهدف.</p>
+            <p style="font-size: 0.85rem; color: #38bdf8;">👇 <b>اقرأ التفاصيل أدناه:</b><br>• تقييم المخاطر البيولوجية المحتملة.<br>• منع التعديلات العشوائية خارج الجين المستهدف.</p>
         </div>
     """, unsafe_allow_html=True)
 
