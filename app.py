@@ -3,19 +3,19 @@ import streamlit as st
 # 1. إعدادات الصفحة
 st.set_page_config(page_title="CRISPR-Cas9 Elite Lab", page_icon="🧬", layout="wide")
 
-# 2. كود التصميم وخلفية سلاسل الـ DNA المتحركة
+# 2. كود التصميم، الخلفية الداكنة، وسلاسل الـ DNA المتحركة مع المنصة الكاملة
 st.markdown("""
 <style>
     @import url('https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;800&display=swap');
 
     .stApp {
-        background-color: #010409;
-        color: #F8FAFC;
+        background-color: #010409 !important;
+        color: #F8FAFC !important;
         font-family: 'Cairo', sans-serif;
         direction: rtl;
     }
 
-    /* حاوية سلاسل الـ DNA المتحركة في الفضاء */
+    /* خلفية سلاسل الـ DNA المتحركة في الفضاء الخلفي */
     .dna-space {
         position: fixed;
         width: 100%;
@@ -27,73 +27,53 @@ st.markdown("""
         overflow: hidden;
     }
 
-    /* تصميم سلاسل الـ DNA وهي تسبح وتدور */
     .dna-strand {
         position: absolute;
         display: block;
-        font-size: 45px;
-        color: rgba(56, 189, 248, 0.6);
+        font-size: 40px;
+        color: rgba(56, 189, 248, 0.7);
         bottom: -100px;
-        animation: floatDNA 10s linear infinite;
-        filter: drop-shadow(0 0 10px rgba(56, 189, 248, 0.8));
+        animation: floatDNA 12s linear infinite;
+        filter: drop-shadow(0 0 8px rgba(56, 189, 248, 0.9));
     }
 
-    .dna-strand:nth-child(1) { left: 8%; animation-duration: 9s; animation-delay: 0s; font-size: 55px; }
-    .dna-strand:nth-child(2) { left: 22%; animation-duration: 13s; animation-delay: 3s; color: rgba(168, 85, 247, 0.7); font-size: 40px; }
-    .dna-strand:nth-child(3) { left: 38%; animation-duration: 11s; animation-delay: 1s; font-size: 60px; }
-    .dna-strand:nth-child(4) { left: 55%; animation-duration: 15s; animation-delay: 4s; color: rgba(168, 85, 247, 0.7); font-size: 50px; }
-    .dna-strand:nth-child(5) { left: 72%; animation-duration: 8s; animation-delay: 2s; font-size: 45px; }
-    .dna-strand:nth-child(6) { left: 88%; animation-duration: 12s; animation-delay: 5s; font-size: 55px; }
+    .dna-strand:nth-child(1) { left: 10%; animation-duration: 10s; animation-delay: 0s; }
+    .dna-strand:nth-child(2) { left: 25%; animation-duration: 14s; animation-delay: 2s; color: rgba(168, 85, 247, 0.8); }
+    .dna-strand:nth-child(3) { left: 40%; animation-duration: 9s; animation-delay: 4s; }
+    .dna-strand:nth-child(4) { left: 60%; animation-duration: 13s; animation-delay: 1s; color: rgba(168, 85, 247, 0.8); }
+    .dna-strand:nth-child(5) { left: 75%; animation-duration: 11s; animation-delay: 3s; }
+    .dna-strand:nth-child(6) { left: 90%; animation-duration: 15s; animation-delay: 5s; }
 
     @keyframes floatDNA {
         0% {
-            transform: translateY(0) rotate(0deg) scale(0.9);
+            transform: translateY(0) rotate(0deg);
             opacity: 0.9;
         }
-        50% {
-            opacity: 1;
-            transform: translateY(-500px) rotate(180deg) scale(1.2);
-        }
         100% {
-            transform: translateY(-1000px) rotate(360deg) scale(0.9);
+            transform: translateY(-900px) rotate(360deg);
             opacity: 0;
         }
     }
 
-    /* تصميم الكروت الفخمة */
+    /* تصميم الكروت الفخمة وتثبيتها فوق الخلفية المتحركة */
     .lab-card {
         position: relative;
-        z-index: 1;
-        background: linear-gradient(135deg, rgba(15, 23, 42, 0.9), rgba(30, 41, 59, 0.95));
+        z-index: 10;
+        background: linear-gradient(135deg, rgba(15, 23, 42, 0.95), rgba(30, 41, 59, 0.95));
         border: 1px solid rgba(56, 189, 248, 0.5);
         border-radius: 18px;
         padding: 24px;
         box-shadow: 0 10px 30px -10px rgba(56, 189, 248, 0.4);
-        transition: all 0.3s ease-in-out;
         margin-bottom: 15px;
     }
-    .lab-card:hover {
-        transform: translateY(-5px);
-        border-color: rgba(56, 189, 248, 1);
-        box-shadow: 0 20px 40px -15px rgba(56, 189, 248, 0.7);
-    }
     
-    h1, h2, h3, h4 {
-        color: #38bdf8 !important;
-        font-family: 'Cairo', sans-serif;
-        font-weight: 800;
-        position: relative;
-        z-index: 1;
-    }
-    p, span, label, div {
-        color: #E2E8F0 !important;
-        font-family: 'Cairo', sans-serif;
-        position: relative;
-        z-index: 1;
+    h1, h2, h3, h4, span, p, label, div {
+        font-family: 'Cairo', sans-serif !important;
+        color: #F8FAFC !important;
     }
 </style>
 
-<!-- خلفية سلاسل الـ DNA المتحركة -->
+<!-- عناصر سلاسل الـ DNA الخلفية -->
 <div class="dna-space">
     <div class="dna-strand">🧬</div>
     <div class="dna-strand">🧬</div>
@@ -104,9 +84,9 @@ st.markdown("""
 </div>
 """, unsafe_allow_html=True)
 
-# 3. محتوى الصفحة الرئيسي
+# 3. محتوى الصفحة الرئيسي والمنصة الأساسية
 st.title("🧬 CRISPR-Cas9 Elite Lab")
-st.markdown("<p style='font-size: 1.2rem; position: relative; z-index: 1;'>منصة النانو الذكية لتحليل واستكشاف تقنية كريسبر لتعديل الجينات بالذكاء الاصطناعي</p>", unsafe_allow_html=True)
+st.markdown("<p style='font-size: 1.2rem;'>منصة النانو الذكية لتحليل واستكشاف تقنية كريسبر لتعديل الجينات بالذكاء الاصطناعي</p>", unsafe_allow_html=True)
 st.divider()
 
 col1, col2, col3 = st.columns(3)
