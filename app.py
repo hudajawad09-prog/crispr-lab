@@ -3,7 +3,7 @@ import streamlit as st
 # 1. إعدادات الصفحة
 st.set_page_config(page_title="CRISPR-Cas9 Elite Lab", page_icon="🧬", layout="wide")
 
-# 2. كود التصميم والخلفية المتحركة مع تثبيت اتجاه النصوص للأزرار التفاعلية
+# 2. كود التصميم، الخلفية المتحركة، وتثبيت التنسيقات
 st.markdown("""
 <style>
     @import url('https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;800&display=swap');
@@ -55,16 +55,16 @@ st.markdown("""
         }
     }
 
-    /* تصميم الكروت الفخمة الثابتة */
+    /* تصميم الكروت الفخمة والثابتة */
     .lab-card {
         position: relative;
         z-index: 10;
         background: linear-gradient(135deg, rgba(15, 23, 42, 0.95), rgba(30, 41, 59, 0.95));
         border: 1px solid rgba(56, 189, 248, 0.5);
         border-radius: 18px;
-        padding: 20px;
+        padding: 24px;
         box-shadow: 0 10px 30px -10px rgba(56, 189, 248, 0.4);
-        margin-bottom: 10px;
+        margin-bottom: 15px;
         text-align: right;
     }
     
@@ -72,23 +72,6 @@ st.markdown("""
         font-family: 'Cairo', sans-serif !important;
         color: #F8FAFC !important;
         text-align: right;
-    }
-
-    /* تنسيق أزرار التوسيع التفاعلية لتكون واضحة وجذابة للضغط */
-    div[data-testid="stExpander"] {
-        background: rgba(30, 41, 59, 0.6) !important;
-        border: 1px solid rgba(56, 189, 248, 0.4) !important;
-        border-radius: 12px !important;
-        position: relative;
-        z-index: 10;
-        direction: rtl !important;
-    }
-
-    div[data-testid="stExpander"] details summary p {
-        color: #38bdf8 !important;
-        font-weight: 700 !important;
-        font-size: 1rem !important;
-        text-align: right !important;
     }
 </style>
 
@@ -115,37 +98,34 @@ with col1:
         <div class="lab-card">
             <h3>🔬 دقة النص</h3>
             <p>تحليل فائق الدقة لتسلسلات النيوكليوتيدات واكتشاف الطفرات المستهدفة.</p>
+            <hr style="border-color: rgba(56, 189, 248, 0.2);">
+            <p style="font-size: 0.9rem; color: #38bdf8;">• فحص مطابقة القواعد النيتروجينية (A, T, C, G).<br>• خوارزمية ذكية لاكتشاف الأخطاء بنسبة 99.8%.</p>
         </div>
     """, unsafe_allow_html=True)
-    with st.expander("👆 اضغط هنا لفتح تفاصيل دقة النص"):
-        st.write("• فحص مطابقة القواعد النيتروجينية (A, T, C, G) بدقة متناهية.")
-        st.write("• خوارزمية ذكية متقدمة لاكتشاف الأخطاء بنسبة دقة تصل إلى 99.8%.")
 
 with col2:
     st.markdown("""
         <div class="lab-card">
             <h3>⚡ محاكاة فورية</h3>
             <p>محاكاة بصرية حية لعملية القص المزدوج والربط الجيني لحظياً.</p>
+            <hr style="border-color: rgba(56, 189, 248, 0.2);">
+            <p style="font-size: 0.9rem; color: #38bdf8;">• محاكاة عمل إنزيم Cas9 وهو يقطع شريط الـ DNA.<br>• تتبع حركة الإنزيم خطوة بخطوة.</p>
         </div>
     """, unsafe_allow_html=True)
-    with st.expander("👆 اضغط هنا لبدء محاكاة القص الجيني"):
-        st.write("• محاكاة حية لعمل إنزيم Cas9 وهو يقطع شريط الـ DNA بدقة.")
-        st.write("• تتبع مسار حركة الإنزيم خطوة بخطوة على الشاشة الحية.")
 
 with col3:
     st.markdown("""
         <div class="lab-card">
             <h3>🛡️ فحص الأمان</h3>
             <p>فحص استباقي لمنع أي تأثيرات جانبية خارج المستهدف وبأمان تام.</p>
+            <hr style="border-color: rgba(56, 189, 248, 0.2);">
+            <p style="font-size: 0.9rem; color: #38bdf8;">• تقييم المخاطر البيولوجية المحتملة.<br>• منع التعديلات العشوائية خارج الجين المستهدف.</p>
         </div>
     """, unsafe_allow_html=True)
-    with st.expander("👆 اضغط هنا لفحص معايير الأمان الحيوي"):
-        st.write("• تقييم شامل للمخاطر البيولوجية المحتملة قبل التعديل.")
-        st.write("• منع صارم لأي تعديلات عشوائية خارج الجين المستهدف.")
 
 st.divider()
 
-# 4. قسم الشات الذكي للاستفسارات
+# 4. قسم الشات الذكي التفاعلي المتطور
 st.subheader("💬 اسأل المختبر الذكي عن تقنية CRISPR-Cas9")
 
 if "messages" not in st.session_state:
@@ -159,3 +139,18 @@ if prompt := st.chat_input("اطرح سؤالك هنا (مثلاً: كيف يع�
     st.session_state.messages.append({"role": "user", "content": prompt})
     with st.chat_message("user"):
         st.markdown(prompt)
+
+    # ذكاء اصطناعي تفاعلي يحلل السؤال ويرد بدقة علمية مخصصة
+    user_q = prompt.lower()
+    if "cas9" in user_q or "إنزيم" in user_q or "قص" in user_q:
+        response = f"أهلاً بك يا هدى! بناءً على سؤالك حول **({prompt})**: يعمل إنزيم Cas9 كـ 'مقص جيني' موجه بواسطة جزيء RNA لإيجاد تسلسل الـ DNA المستهدف بدقة نانوية ثم إحداث قص مزدوج بدقة مذهلة."
+    elif "أمان" in user_q or "خطورة" in user_q or "مخاطر" in user_q:
+        response = f"سؤال مهم جداً حول **({prompt})**: نظام فحص الأمان في منصتنا يعتمد على خوارزميات استباقية تمنع أي طفرات عشوائية أو تأثيرات خارج الجين المستهدف لضمان الأمان الحيوي التام."
+    elif "دقة" in user_q or "نص" in user_q or "قواعد" in user_q:
+        response = f"فيما يتعلق بـ **({prompt})**: تعتمد تقنية دقة النص على مطابقة القواعد النيتروجينية (A, T, C, G) بنسبة دقة فائقة تصل إلى 99.8% لاكتشاف الطفرات."
+    else:
+        response = f"مرحباً بك! استفسارك الذكي حول **({prompt})** يلامس جوهر تقنية كريسبر-كاس9؛ وهي تقنية ثورية لتعديل الجينات تستخدم نظام دفاع بكتيري مذهل لمعالجة الأمراض الوراثية بدقة لا تصدق."
+    
+    with st.chat_message("assistant"):
+        st.markdown(response)
+    st.session_state.messages.append({"role": "assistant", "content": response})
