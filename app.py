@@ -3,7 +3,7 @@ import streamlit as st
 # 1. إعدادات الصفحة
 st.set_page_config(page_title="CRISPR-Cas9 Elite Lab", page_icon="🧬", layout="wide")
 
-# 2. كود التصميم والخلفية المتحركة بالـ CSS الحية والواضحة
+# 2. كود التصميم وخلفية سلاسل الـ DNA المتحركة
 st.markdown("""
 <style>
     @import url('https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;800&display=swap');
@@ -15,8 +15,8 @@ st.markdown("""
         direction: rtl;
     }
 
-    /* تأثيرات جزيئات الـ DNA المتحركة في الخلفية */
-    .floating-dna {
+    /* حاوية سلاسل الـ DNA المتحركة في الفضاء */
+    .dna-space {
         position: fixed;
         width: 100%;
         height: 100%;
@@ -27,33 +27,35 @@ st.markdown("""
         overflow: hidden;
     }
 
-    .dna-particle {
+    /* تصميم سلاسل الـ DNA وهي تسبح وتدور */
+    .dna-strand {
         position: absolute;
         display: block;
-        list-style: none;
-        width: 25px;
-        height: 25px;
-        background: rgba(56, 189, 248, 0.15);
-        border: 2px solid rgba(56, 189, 248, 0.5);
-        border-radius: 50%;
-        bottom: -150px;
-        animation: animateParticle 12s linear infinite;
+        font-size: 45px;
+        color: rgba(56, 189, 248, 0.6);
+        bottom: -100px;
+        animation: floatDNA 10s linear infinite;
+        filter: drop-shadow(0 0 10px rgba(56, 189, 248, 0.8));
     }
 
-    .dna-particle:nth-child(1) { left: 10%; width: 30px; height: 30px; animation-duration: 8s; background: rgba(56, 189, 248, 0.2); }
-    .dna-particle:nth-child(2) { left: 25%; width: 20px; height: 20px; animation-duration: 12s; animation-delay: 2s; border-color: rgba(168, 85, 247, 0.6); }
-    .dna-particle:nth-child(3) { left: 40%; width: 40px; height: 40px; animation-duration: 10s; animation-delay: 4s; }
-    .dna-particle:nth-child(4) { left: 55%; width: 25px; height: 25px; animation-duration: 14s; animation-delay: 1s; border-color: rgba(168, 85, 247, 0.6); }
-    .dna-particle:nth-child(5) { left: 70%; width: 35px; height: 35px; animation-duration: 9s; animation-delay: 3s; }
-    .dna-particle:nth-child(6) { left: 85%; width: 20px; height: 20px; animation-duration: 11s; animation-delay: 5s; }
+    .dna-strand:nth-child(1) { left: 8%; animation-duration: 9s; animation-delay: 0s; font-size: 55px; }
+    .dna-strand:nth-child(2) { left: 22%; animation-duration: 13s; animation-delay: 3s; color: rgba(168, 85, 247, 0.7); font-size: 40px; }
+    .dna-strand:nth-child(3) { left: 38%; animation-duration: 11s; animation-delay: 1s; font-size: 60px; }
+    .dna-strand:nth-child(4) { left: 55%; animation-duration: 15s; animation-delay: 4s; color: rgba(168, 85, 247, 0.7); font-size: 50px; }
+    .dna-strand:nth-child(5) { left: 72%; animation-duration: 8s; animation-delay: 2s; font-size: 45px; }
+    .dna-strand:nth-child(6) { left: 88%; animation-duration: 12s; animation-delay: 5s; font-size: 55px; }
 
-    @keyframes animateParticle {
+    @keyframes floatDNA {
         0% {
-            transform: translateY(0) rotate(0deg) scale(1);
-            opacity: 0.8;
+            transform: translateY(0) rotate(0deg) scale(0.9);
+            opacity: 0.9;
+        }
+        50% {
+            opacity: 1;
+            transform: translateY(-500px) rotate(180deg) scale(1.2);
         }
         100% {
-            transform: translateY(-900px) rotate(720deg) scale(1.3);
+            transform: translateY(-1000px) rotate(360deg) scale(0.9);
             opacity: 0;
         }
     }
@@ -91,14 +93,14 @@ st.markdown("""
     }
 </style>
 
-<!-- عناصر الخلفية المتحركة -->
-<div class="floating-dna">
-    <div class="dna-particle"></div>
-    <div class="dna-particle"></div>
-    <div class="dna-particle"></div>
-    <div class="dna-particle"></div>
-    <div class="dna-particle"></div>
-    <div class="dna-particle"></div>
+<!-- خلفية سلاسل الـ DNA المتحركة -->
+<div class="dna-space">
+    <div class="dna-strand">🧬</div>
+    <div class="dna-strand">🧬</div>
+    <div class="dna-strand">🧬</div>
+    <div class="dna-strand">🧬</div>
+    <div class="dna-strand">🧬</div>
+    <div class="dna-strand">🧬</div>
 </div>
 """, unsafe_allow_html=True)
 
