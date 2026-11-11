@@ -3,7 +3,7 @@ import streamlit as st
 # 1. إعدادات الصفحة
 st.set_page_config(page_title="CRISPR-Cas9 Elite Lab", page_icon="🧬", layout="wide")
 
-# 2. كود التصميم، الخلفية المتحركة، وترتيب النصوص واتجاهاتها
+# 2. كود التصميم، الخلفية المتحركة، وضبط اتجاه الحروف والنصوص بدقة تامة
 st.markdown("""
 <style>
     @import url('https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;800&display=swap');
@@ -72,12 +72,31 @@ st.markdown("""
         color: #F8FAFC !important;
     }
 
-    /* ضبط اتجاه النصوص داخل الأزرار التوسعية لتكون سليمة وواضحة */
-    div[data-testid="stExpander"] details summary p {
+    /* إصلاح اتجاه النصوص وأزرار التفاصيل تماماً لتظهر الحروف عربية صحيحة 100% */
+    div[data-testid="stExpander"] {
         direction: rtl !important;
         text-align: right !important;
+    }
+    
+    div[data-testid="stExpander"] details summary {
+        direction: rtl !important;
+        text-align: right !important;
+    }
+
+    div[data-testid="stExpander"] details summary p, 
+    div[data-testid="stExpander"] details summary span {
+        direction: rtl !important;
+        unicode-bidi: plaintext !important;
+        text-align: right !important;
         color: #38bdf8 !important;
-        font-weight: 600;
+        font-weight: 700;
+    }
+
+    div[data-testid="stExpander"] div[data-testid="stMarkdownContainer"] p {
+        direction: rtl !important;
+        unicode-bidi: plaintext !important;
+        text-align: right !important;
+        color: #E2E8F0 !important;
     }
 </style>
 
