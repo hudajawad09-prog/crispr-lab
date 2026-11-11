@@ -94,6 +94,19 @@ st.markdown("""
         color: #F8FAFC;
         box-shadow: 0 4px 15px rgba(168, 85, 247, 0.2);
     }
+
+    /* تصميم فاخر لتويتر/فوتر الحقوق والإشراف */
+    .footer-box {
+        position: relative;
+        z-index: 10;
+        background: linear-gradient(135deg, rgba(15, 23, 42, 0.98), rgba(30, 41, 59, 0.98));
+        border: 1px solid rgba(168, 85, 247, 0.4);
+        border-radius: 16px;
+        padding: 20px;
+        margin-top: 40px;
+        text-align: center;
+        box-shadow: 0 5px 20px rgba(56, 189, 248, 0.2);
+    }
 </style>
 
 <!-- عناصر سلاسل الـ DNA الخلفية -->
@@ -184,3 +197,13 @@ if st.session_state.history:
     for chat in reversed(st.session_state.history):
         st.markdown(f"<div class='chat-box-user'>👤 سؤالك: {chat['user']}</div>", unsafe_allow_html=True)
         st.markdown(f"<div class='chat-box-ai'>🤖 إجابة المختبر: {chat['ai']}</div>", unsafe_allow_html=True)
+
+# 5. قسم حقوق الملكية والاعتمادات الرسمية في أسفل الموقع
+st.markdown("""
+<div class="footer-box">
+    <p style="color: #38bdf8; font-weight: 800; font-size: 1.1rem; margin-bottom: 8px;">✨ Made by: Huda Hasan</p>
+    <p style="color: #F8FAFC; font-size: 0.95rem; margin: 4px 0;">إشراف المعلمة: أ. وديعة خليل</p>
+    <p style="color: #F8FAFC; font-size: 0.95rem; margin: 4px 0;">المعلمة الأولى: هدى العرادي</p>
+    <p style="color: #F8FAFC; font-size: 0.95rem; margin: 4px 0;">مديرة المدرسة: هاشمية السيد شرف</p>
+</div>
+""", unsafe_allow_html=True)
