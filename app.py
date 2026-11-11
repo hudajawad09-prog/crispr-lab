@@ -3,7 +3,7 @@ import streamlit as st
 # 1. إعدادات الصفحة
 st.set_page_config(page_title="CRISPR-Cas9 Elite Lab", page_icon="🧬", layout="wide")
 
-# 2. كود التصميم، الخلفية الداكنة، وسلاسل الـ DNA المتحركة مع المنصة الكاملة
+# 2. كود التصميم، الخلفية المتحركة، وترتيب النصوص واتجاهاتها
 st.markdown("""
 <style>
     @import url('https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;800&display=swap');
@@ -71,6 +71,14 @@ st.markdown("""
         font-family: 'Cairo', sans-serif !important;
         color: #F8FAFC !important;
     }
+
+    /* ضبط اتجاه النصوص داخل الأزرار التوسعية لتكون سليمة وواضحة */
+    div[data-testid="stExpander"] details summary p {
+        direction: rtl !important;
+        text-align: right !important;
+        color: #38bdf8 !important;
+        font-weight: 600;
+    }
 </style>
 
 <!-- عناصر سلاسل الـ DNA الخلفية -->
@@ -99,7 +107,7 @@ with col1:
         </div>
     """, unsafe_allow_html=True)
     with st.expander("عرض تفاصيل دقة النص"):
-        st.write("• فحص مطابقة قواعد القواعد النيتروجينية (A, T, C, G).")
+        st.write("• فحص مطابقة القواعد النيتروجينية (A, T, C, G).")
         st.write("• خوارزمية ذكية لاكتشاف الأخطاء بنسبة دقة تصل إلى 99.8%.")
 
 with col2:
